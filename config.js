@@ -4,7 +4,7 @@
 		"model": 	"yolov8n.pt",
 		"device": 	"GPU",
 		"data_type": "FP16",
-		"source": 	"./videos/streat.mp4",
+		"source": 	"/dev/video7",
 		"adapter":  "yolov8"
 	}
 ]

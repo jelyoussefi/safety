@@ -22,6 +22,17 @@ RUN	apt install -y  ocl-icd-libopencl1 intel-opencl-icd intel-level-zero-gpu lev
 RUN	pip3 install dpctl dpnp openvino-dev[onnx]
 RUN	pip3 install torch==2.3.1 torchvision==0.18.1 intel_extension_for_pytorch==2.3.110+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/xpu/us/
 	
-	
+# Building and Install RealSense SDK
+RUN apt-get install -y libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk-3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev at
+
+WORKDIR /tmp
+RUN git clone https://github.com/IntelRealSense/librealsense
+RUN cd librealsense && \
+	mkdir build && cd build && \
+	cmake -DBUILD_EXAMPLES=false -DBUILD_GRAPHICAL_EXAMPLES=false -DBUILD_TOOLS=false \
+	-DPYTHON_EXECUTABLE=/usr/bin/python3  -DBUILD_PYTHON_BINDINGS:bool=true .. && \
+	make -j`nproc` && make install 
+RUN	rm -rf /tmp/*
+RUN pip3 install pyrealsense2
 
 

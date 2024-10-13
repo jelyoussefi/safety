@@ -16,6 +16,7 @@ DOCKER_RUN_PARAMS= \
 	--privileged -v /dev:/dev \
 	-v ${CURRENT_DIR}:/workspace \
 	-v /tmp/.X11-unix:/tmp/.X11-unix  -v ${HOME}/.Xauthority:/home/root/.Xauthority \
+	-w /workspace \
 	 ${DOCKER_IMAGE_NAME}
 
 #----------------------------------------------------------------------------------------------------------------------

@@ -5,7 +5,7 @@ from pathlib import Path
 import copy
 import cv2
 import numpy as np
-#import pyrealsense2.pyrealsense2 as rs
+import pyrealsense2.pyrealsense2 as rs
 
 
 class InvalidInput(Exception):
@@ -231,7 +231,7 @@ class VideoCapture():
             self.input_index = (self.input_index+1) % self.nb_inputs
             input = self.inputs[self.input_index]
         
-            for reader in (ImreadWrapper, DirReader, VideoCapWrapper):
+            for reader in (ImreadWrapper, DirReader, RealSenseCapWrapper, VideoCapWrapper):
                 try:
                     self.reader = reader(input, self.loop)
                     if self.reader is not None:
