@@ -295,7 +295,6 @@ cdef class YoloV8ModelBase():
 			x1, y1, x2, y2 = box.astype(int)
 
 			distance = self.cap.get_distance(x1 + (x2-x1)/2, y1 + (y2-y1)/2)
-			print(distance)
 
 			# Draw rectangle
 			cv2.rectangle(mask_img, (x1, y1), (x2, y2), color, 2)
